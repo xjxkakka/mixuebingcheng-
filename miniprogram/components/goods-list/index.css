@@ -1,0 +1,75 @@
+.menu-list {
+  height: 1148rpx;
+}
+.menu-list .swiper {
+  height: 266rpx;
+  width: 100%;
+  border-radius: 15rpx;
+  overflow: hidden;
+}
+.menu-list .swiper image {
+  height: 100%;
+  width: 100%;
+}
+.menu-list .list {
+  margin-top: 44rpx;
+}
+.menu-list .list .section {
+  margin-bottom: 42rpx;
+}
+.menu-list .list .section .section-header {
+  font-size: 22rpx;
+  font-weight: 500;
+  height: 50rpx;
+  background-color: #fff;
+  width: 100%;
+}
+.menu-list .list .section .section-list .item {
+  margin-bottom: 48rpx;
+  display: flex;
+  width: 100%;
+}
+.menu-list .list .section .section-list .item:last-child {
+  margin-bottom: 0;
+}
+.menu-list .list .section .section-list .item image {
+  width: 158rpx;
+  height: 158rpx;
+  margin-right: 22rpx;
+  flex-shrink: 0;
+}
+.menu-list .list .section .section-list .item .info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.menu-list .list .section .section-list .item .info .name {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+.menu-list .list .section .section-list .item .info .description {
+  color: #777777;
+  font-size: 22rpx;
+}
+.menu-list .list .section .section-list .item .info .price {
+  margin-top: 54rpx;
+  color: #E60012;
+  font-size: 22rpx;
+}
+.menu-list .list .section .section-list .item .add-icon {
+  width: 46rpx;
+  height: 46rpx;
+  background-color: #E60012;
+  border-radius: 23rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+}
+.menu-list .list .section .section-list .item .add-icon image {
+  width: 20rpx;
+  height: 20rpx;
+  margin: 0;
+}
+
+/*# sourceMappingURL=index.css.map */

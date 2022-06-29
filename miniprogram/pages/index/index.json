@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "progress-bar":"../../components/progress-bar/index"
+  },
+  "navigationStyle": "custom"
+}

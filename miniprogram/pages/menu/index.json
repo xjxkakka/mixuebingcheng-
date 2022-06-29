@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "sidebar": "../../components/sidebar/index",
+    "goods-list": "../../components/goods-list/index",
+    "cart-bar": "../../components/cart-bar/index",
+    "dialog": "../../components/dialog/index",
+    "goods-detail": "../../components/goods-detail/index"
+  },
+  "navigationStyle": "custom"
+}

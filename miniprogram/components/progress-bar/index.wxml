@@ -1,0 +1,3 @@
+<view class="track">
+    <view class="value" style="width:{{value}}%;"></view>
+</view>

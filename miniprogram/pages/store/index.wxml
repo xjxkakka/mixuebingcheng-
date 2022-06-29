@@ -1,0 +1,93 @@
+<view class="page">
+    <view class="header">
+        <tabs tabs="{{[{value:'nearby',label:'附近门店'},{value:'recent',label: '常去门店'}]}}"></tabs>
+        <input bindtap="chooseLocation" class="search" placeholder="搜索门店" type="text"/>
+    </view>
+
+    <!--
+    下面这两个是必填的  中心维度获取当前位置
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      show-location   这个需要写上，显示带有方向的当前定位点
+       markers="{{markers}}"  markers 是用来显示你搜索出来的结果他们的坐标的
+     bindmarkertap="onMarkerTab" 当点击地图上的标记点后返回点击的第几个，然后通过源数组[第几个]拿到详细信息
+    -->
+    <!-- <map
+             id="store-map"
+             class="store-map"
+             bindmarkertap="onMarkerTab"
+             bindcallouttap="onCalloutTap"
+             bindlabeltap="onLabelTap"
+     ></map>-->
+    <map
+            id="store-map"
+            class="store-map"
+            latitude="{{latitude}}"
+            longitude="{{longitude}}"
+            show-location
+            markers="{{markers}}"
+            style="height: {{ mapShow ? '520rpx' : '0' }};"
+            bindmarkertap="onMarkerTab"
+    >
+        <image class="current-icon" src="../../assets/images/current.png" bindtap="goToCurrentLocation"></image>
+    </map>
+
+    <view class="collapse-area" bindtap="isShow">
+        {{mapShow ? '收起地图' : '展开地图'}}
+        <image class="icon" src="{{'../../assets/icons/arrow-'+(mapShow?'up':'down')+'.svg'}}"></image>
+    </view>
+    <!--    height: calc(100vh - 700rpx);-->
+    <scroll-view style="height:calc(100vh - {{mapShow? 700 : 180}}rpx)"
+                 class="store-list" scroll-y>
+        <view class="store-box" wx:for="{{storeList}}" wx:key="index" bindtap="popupStoreDetail"
+              data-store="{{ item }}">
+            <view class="info-area">
+                <view class="name">{{item.name}}</view>
+                <view class="info">{{item.address}}</view>
+                <view class="info">营业时间: {{item.opening_time}}</view>
+                <view class="tag">{{dict[item.status]}}</view>
+            </view>
+            <view class="location-area">
+                <view class="distance">距离{{item.distance}}km</view>
+                <view class="action-area">
+                    <image class="location" catchtap="navigateLocation" data-location="{{item.location}}"
+                           src="../../assets/images/location.jpg"></image>
+                    <image class="phone" catchtap="call" data-phone="{{item.phone}}"
+                           src="../../assets/images/phone.jpg"></image>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{ !storeList.length }}" class="empty">抱歉附近暂时没有店</view>
+    </scroll-view>
+    <!--
+    弹出层 page-container 小程序提供的组件
+    -->
+    <page-container show="{{storeDetailShow}}" position="bottom" round class="store-detail">
+        <view class="notification">
+            <image class="icon" src="../../assets/icons/speaker.svg"></image>
+            <view class="info">我们的门店很多，千万不要选错啊哦~</view>
+        </view>
+        <view class="container">
+            <view class="header-area">
+                <view class="info">
+                    <view class="title">{{ currentStore.name }}</view>
+                    <view class="address">{{ currentStore.address }}</view>
+                </view>
+                <view class="distance">
+                    距离
+                    <view style="color: red;">{{ currentStore.distance }}km</view>
+                </view>
+            </view>
+            <!--
+            下面的markers可以直接复用这个，主要是展示图标的，地图通过经纬来显示
+            -->
+            <map id="store-detail-map" class="store-detail-map"
+                 latitude="{{ currentStore.location.latitude }}"
+                 longitude="{{ currentStore.location.longitude }}"
+                 markers="{{ markers }}">
+            </map>
+            <button class="menu-btn" bindtap="goToMenu">进入菜单</button>
+        </view>
+
+    </page-container>
+</view>

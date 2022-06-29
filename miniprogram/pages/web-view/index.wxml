@@ -1,0 +1,3 @@
+<!--pages/web-view/index.wxml-->
+<!--  webview传入地址后会铺满整个页面，主要用来跳转至别人写好的页面  -->
+<web-view wx:if="{{url}}" src="{{url}}"></web-view>

@@ -1,0 +1,54 @@
+<view class="header" style="{{headerStyle}}">
+    <image class="back-icon" bindtap="switchCurrentStore" src="../../assets/icons/arrow-left.svg"></image>
+    <view class="search-input">
+        <image class="search-icon" src="../../assets/icons/search.svg"></image>
+        <input placeholder="请输入商品名"/>
+    </view>
+</view>
+
+<view class="menu-info">
+    <view class="store-info">
+        <view class="store-name" bindtap="switchCurrentStore">
+            {{ currentStore.name }}
+            <!--            蜜雪冰城(花都广场店)-->
+            <image src="../../assets/icons/arrow-right.svg"></image>
+        </view>
+        <view class="store-location">
+            <image class="location-icon" src="../../assets/icons/location.svg"></image>
+            <view class="distance-info">
+                距离您
+                <view style="color: red; margin-left: 4rpx">
+                    {{ currentStore.distance }}km
+                    <!--                2km-->
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="trade-type">
+        自提
+    </view>
+
+
+</view>
+
+<view class="menu">
+
+    <sidebar list="{{goodsList}}" bind:on-change="onSideBarChange" defaultCurrent="{{sidebarCurrent}}"></sidebar>
+
+   <goods-list list="{{goodsList}}" current="{{currentCategoryIndex}}" bind:on-change="onGoodsListChange" bind:on-selected="onGoodsSelected">
+       <view slot="before">
+           <view class="swiper">
+               <swiper circular autoplay>
+                   <swiper-item wx:for="{{swiperList}}" wx:key="index">
+                       <image mode="aspectFill" src="{{item.imageUrl}}"></image>
+                   </swiper-item>
+               </swiper>
+           </view>
+       </view>
+   </goods-list>
+</view>
+<cart-bar></cart-bar>
+<dialog show="{{goodsDialogShow}}">
+    <goods-detail goods="{{selectedGoods}}"></goods-detail>
+</dialog>
